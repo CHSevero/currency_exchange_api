@@ -1,7 +1,12 @@
+"""
+FastAPI application entry point.
+
+This module initializes the FastAPI application and includes the root and health check endpoints.
+It also sets up the application with the project name, description, version, and API documentation URLs.
+"""
 from fastapi import FastAPI
 
 from app.core.config import settings
-
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -14,16 +19,18 @@ app = FastAPI(
 
 
 @app.get("/")
-async def root():
-    """
-    Root endpoint.
-    """
+async def root() -> dict[str, str]:
+    """Root endpoint."""
     return {"message": "Welcome to the Currency Converter API!"}
 
 
 @app.get("/health")
-async def health_check():
-    """
-    Health check endpoint.
-    """
+async def health_check() -> dict[str, str]:
+    """Health check endpoint."""
     return {"status": "healthy"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="127.0.0.1", port=8000)

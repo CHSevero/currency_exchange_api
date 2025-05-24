@@ -1,11 +1,23 @@
+"""Application configuration module.
+
+This module defines the application settings using Pydantic BaseSettings.
+It handles configuration for:
+- API metadata and versioning
+- Exchange rate service configuration
+- Cache settings
+- Supported currencies
+- Database configuration
+
+Settings can be overridden using environment variables or a .env file.
+"""
+
 import os
+
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    """
-    Application settings loaded from environment variables.
-    """
+    """Application settings loaded from environment variables."""
 
     # API settings
     API_V1_STR: str = "/api/v1"
@@ -46,9 +58,7 @@ class Settings(BaseSettings):
     DATABASE_NAME: str = "currency_converter.db"
 
     class Config:
-        """
-        Configuration for Pydantic settings.
-        """
+        """Configuration for Pydantic settings."""
 
         env_file = ".env"
         env_file_encoding = "utf-8"
