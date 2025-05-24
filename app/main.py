@@ -4,6 +4,7 @@ FastAPI application entry point.
 This module initializes the FastAPI application and includes the root and health check endpoints.
 It also sets up the application with the project name, description, version, and API documentation URLs.
 """
+
 from fastapi import FastAPI
 
 from app.core.config import settings

@@ -23,9 +23,7 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     PROJECT_NAME: str = "Currency Exchange API"
     PROJECT_VERSION: str = "1.0.0"
-    PROJECT_DESCRIPTION: str = (
-        "Currency Converter API with transaction history tracking"
-    )
+    PROJECT_DESCRIPTION: str = "Currency Converter API with transaction history tracking"
     PROJECT_DOCS_URL: str = "/docs"
     PROJECT_REDOC_URL: str = "/redoc"
 
@@ -35,9 +33,7 @@ class Settings(BaseSettings):
     EXCHANGE_RATE_API_BASE_CURRENCY: str = "EUR"
 
     # Cache settings
-    ECHANGE_RATE_CACHE_TTL: int = (
-        3600  # Time to live for cached exchange rates in seconds
-    )
+    ECHANGE_RATE_CACHE_TTL: int = 3600  # Time to live for cached exchange rates in seconds
 
     # Supported currencies
     SUPPORTED_CURRENCIES: list[str] = [
