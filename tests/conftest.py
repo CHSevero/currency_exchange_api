@@ -13,6 +13,6 @@ from app.main import app
 
 @pytest.fixture
 def client() -> TestClient:
-    """ "Fixture for creating a test client for the FastAPI application."""
+    """"Fixture for creating a test client for the FastAPI application."""
     with TestClient(app) as client:
         yield client
