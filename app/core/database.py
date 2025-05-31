@@ -21,7 +21,8 @@ class DatabaseManager:
 
     def __init__(self) -> None:
         """Initialize the database manager with the configured database URI."""
-        self.engine = create_engine(settings.SQLALCHEMY_DATABASE_URI, connect_args={"check_same_thread": False})
+        database_url = f"sqlite:///./{settings.DATABASE_NAME}"
+        self.engine = create_engine(database_url, connect_args={"check_same_thread": False})
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
 
     def get_db(self) -> Generator:

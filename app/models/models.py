@@ -4,11 +4,11 @@ This module defines the database models used in the application.
 - Transaction: Stores currency conversion transactions.
 - ExchangeRate: Stores exchange rates as backup data.
 """
-from datetime import datetime, timedzone
+from datetime import UTC, datetime
 
 from sqlalchemy import JSON, Column, DateTime, Integer, Numeric, String
 
-from app.core import Base
+from app.core.database import Base
 
 
 class Transaction(Base):
@@ -25,7 +25,7 @@ class Transaction(Base):
     exchange_rate = Column(Numeric(18, 2))
     timestamp = Column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(timedzone.utc)
+        default=lambda: datetime.now(UTC)
     )
 
 
@@ -39,5 +39,5 @@ class ExchangeRate(Base):
     rates = Column(JSON)
     last_updated = Column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(timedzone.utc)
+        default=lambda: datetime.now(UTC)
     )

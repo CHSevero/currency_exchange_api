@@ -61,7 +61,7 @@ class RateService:
         """
         # Validate currencies
         for currency in [from_currency, to_currency]:
-            if not self.is_valid_currency(currency):
+            if currency not in settings.SUPPORTED_CURRENCIES:
                 raise InvalidCurrencyError(currency)
 
         # Same currency conversion
@@ -69,7 +69,7 @@ class RateService:
             return Decimal("1")
 
         # Get rates with EUR as base
-        rates = self._get_rates(db)
+        rates = await self._get_rates(db)
 
         # Calculate exchange rate
         if from_currency == self.base_currency:
@@ -132,7 +132,7 @@ class RateService:
             return rates
 
 
-    async def _fecth_from_external_api(self) -> dict[str, Decimal]:
+    async def _fetch_from_external_api(self) -> dict[str, Decimal]:
         """Fetch exchange rates from external API.
 
         Returns:
@@ -203,7 +203,7 @@ class RateService:
                 # Convert string rates back to Decimal
                 return {
                     currency: Decimal(rate)
-                    for currency, rate in exchange_rate.items()
+                    for currency, rate in exchange_rate.rates.items()
                 }
 
         except Exception:
