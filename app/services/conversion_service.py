@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 
 from sqlalchemy.orm import Session
@@ -68,7 +68,7 @@ class ConversionService:
             source_amount=amount,
             target_amount=converted_amount,
             exchange_rate=exchange_rate,
-            timestamp=datetime.now(datetime.UTC),
+            timestamp=datetime.now(timezone.utc),
         )
         db.add(transaction)
         db.commit()

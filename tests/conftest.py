@@ -46,8 +46,8 @@ def engine() -> Generator:
 def db_session(engine: Engine) -> Generator:
     """Create a test database session."""
     session = sessionmaker(bind=engine)
-    yield session()
-
+    session = session()
+    yield session
     session.rollback()
     session.close()
 
@@ -60,4 +60,18 @@ def mock_rates_response() -> dict[str, Decimal]:
         "rates": {"USD": 1.18, "JPY": 129.55, "BRL": 6.35, "EUR": 1.0},
         "success": True,
         "timestamp": 1620000000,
+    }
+
+
+@pytest.fixture
+def test_data() -> dict:
+    """Common test data."""
+    return {
+        "user_id": "test_user",
+        "from_currency": "USD",
+        "to_currency": "EUR",
+        "amount": "100.00",
+        "exchange_rate": "0.85",
+        "base_currency": "EUR",
+        "rates": {"USD": "1.18", "JPY": "129.55", "BRL": "6.35"},
     }

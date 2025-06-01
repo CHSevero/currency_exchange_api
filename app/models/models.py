@@ -20,7 +20,7 @@ class Transaction(Base):
     user_id = Column(String, index=True)
     source_currency = Column(String(3))
     target_currency = Column(String(3))
-    souce_amount = Column(Numeric(18, 2))
+    source_amount = Column(Numeric(18, 2))
     target_amount = Column(Numeric(18, 2))
     exchange_rate = Column(Numeric(18, 2))
     timestamp = Column(
