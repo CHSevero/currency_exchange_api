@@ -16,7 +16,9 @@ lint.ignore = [
     "D212",  # multi-line-summary-first-line
     "COM812",
     "D100",
-    "UP017"
+    "UP017",
+    "G004",
+    "PLR0913",
 ]
 
 # Line length to match black default
